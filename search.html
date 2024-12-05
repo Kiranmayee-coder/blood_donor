@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Dashboard</title>
+    <style>
+        /* Add your existing CSS here */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blood Bank and Donor Management System</h1>
+    </header>
+    <nav>
+        <img src="https://thumbs.dreamstime.com/b/blood-donation-logo-drop-vector-illustration-149924795.jpg" alt="Logo">
+        <a href="home.html">Home</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About Us</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="profile.html">Profile</a>
+        <a href="search.html">Search for Donor</a>
+    </nav>
+    <div class="container">
+        <div class="blood-group-image">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl2TZMQ1cRxJx0PrcG99Esm0JU8kFrzOMOzdnYdSVJol4GpnUVu92_2WSPUNY61Fi7Grk&usqp=CAU" alt="Blood Groups">
+        </div>
+        <div class="dropdown-container">
+            <div class="form-group">
+                <label for="bloodGroup">Select Blood Group:</label>
+                <select id="bloodGroup">
+                    <option value="">Select</option>
+                    <option value="A+">A+</option>
+                    <option value="B+">B+</option>
+                    <option value="O-">O-</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="A-">A-</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="state">Select State:</label>
+                <select id="state">
+                    <option value="">Select</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <!-- Add more states -->
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <button id="searchButton">Search</button>
+        </div>
+        <div class="dashboard" id="dashboard">
+            <!-- Donor details will be displayed here -->
+        </div>
+    </div>
+    <script>
+        document.getElementById('searchButton').addEventListener('click', function() {
+            var bloodGroup = document.getElementById('bloodGroup').value;
+            var state = document.getElementById('state').value;
+
+            if (bloodGroup && state) {
+                fetch('get_donors.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'blood_group=' + encodeURIComponent(bloodGroup) + '&state=' + encodeURIComponent(state)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    var dashboard = document.getElementById('dashboard');
+                    if (data.length > 0) {
+                        var table = '<table><tr><th>Name</th><th>Blood Group</th><th>Age</th><th>Contact</th><th>Email</th><th>State</th></tr>';
+                        data.forEach(function(donor) {
+                            table += `<tr>
+                                <td>${donor.name}</td>
+                                <td>${donor.blood_group}</td>
+                                <td>${donor.age}</td>
+                                <td>${donor.contact}</td>
+                                <td>${donor.email}</td>
+                                <td>${donor.state}</td>
+                            </tr>`;
+                        });
+                        table += '</table>';
+                        dashboard.innerHTML = table;
+                    } else {
+                        dashboard.innerHTML = '<p>No donors found for the selected criteria.</p>';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('dashboard').innerHTML = '<p>An error occurred while fetching donors.</p>';
+                });
+            } else {
+                document.getElementById('dashboard').innerHTML = '<p>Please select both blood group and state.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

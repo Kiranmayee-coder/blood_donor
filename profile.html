@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background: maroon;
+            color: white;
+            text-align: center;
+            padding: 5px 0;
+        }
+        header h1 {
+            margin: 0;
+            padding: 5px 0;
+            font-size: 1.5em;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 0;
+            background: white;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+        nav img {
+            height: 40px;
+            position: absolute;
+            left: 10px;
+        }
+        nav a {
+            color: black;
+            padding: 5px 10px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 0.9em;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .profile-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 800px;
+            margin: 20px auto;
+        }
+        .profile-details {
+            width: 50%;
+        }
+        .profile-details h2 {
+            text-align: center;
+            color: darkred; /* Different color for "My Profile" */
+        }
+        .profile-details p {
+            margin: 10px 0;
+            color: maroon;
+        }
+        .profile-details button {
+            width: 100%;
+            padding: 10px;
+            background-color: maroon;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .profile-details button:hover {
+            background-color: darkred;
+        }
+        .profile-image {
+            width: 50%;
+            text-align: center;
+        }
+        .profile-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blood Bank and Donor Management System</h1>
+    </header>
+    <nav>
+        <img src="https://thumbs.dreamstime.com/b/blood-donation-logo-drop-vector-illustration-149924795.jpg" alt="Logo"> <!-- Replace with your actual logo image path -->
+        <a href="home.html">Home</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About Us</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="profile.html">Profile</a>
+        <a href="search.html">Search for Donor</a>
+    </nav>
+    <div class="profile-container">
+        <div class="profile-details">
+            <h2>My Profile</h2>
+            <div id="profileDetails"></div>
+            <button onclick="window.location.href='register.html'">Back</button>
+        </div>
+        <div class="profile-image">
+            <img src="https://www.nidirect.gov.uk/sites/default/files/images/news/blood-donation.jpg" alt="Profile Image"> <!-- Replace with your actual image path -->
+        </div>
+    </div>
+
+    <script>
+        const profileData = JSON.parse(localStorage.getItem('profileData'));
+        const profileDetails = document.getElementById('profileDetails');
+
+        if (profileData) {
+            for (const key in profileData) {
+                const p = document.createElement('p');
+                p.textContent = `${key.charAt(0).toUpperCase() + key.slice(1)}: ${profileData[key]}`;
+                profileDetails.appendChild(p);
+            }
+        } else {
+            const p = document.createElement('p');
+            p.textContent = "No profile data found.";
+            profileDetails.appendChild(p);
+        }
+    </script>
+</body>
+</html>

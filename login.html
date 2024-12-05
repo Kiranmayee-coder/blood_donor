@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background: maroon;
+            color: white;
+            text-align: center;
+            padding: 5px 0;
+        }
+        header h1 {
+            margin: 0;
+            padding: 5px 0;
+            font-size: 1.5em;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 0;
+            background: white;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+        nav img {
+            height: 40px;
+            position: absolute;
+            left: 10px;
+        }
+        nav a {
+            color: black;
+            padding: 5px 10px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 0.9em;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .form-container {
+            background-image: url('https://plus.unsplash.com/premium_photo-1682309740788-04a5451ee019?q=80&w=1824&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: 20px auto;
+            background-color: white;
+        }
+        .form-container h2 {
+            text-align: center;
+            color: maroon;
+        }
+        .form-container label {
+            color: maroon;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: maroon;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: darkred;
+        }
+        .form-container .forgot-password {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .form-container .forgot-password a {
+            color: maroon;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .form-container .forgot-password a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blood Bank and Donor Management System</h1>
+    </header>
+    <nav>
+        <img src="https://thumbs.dreamstime.com/b/blood-donation-logo-drop-vector-illustration-149924795.jpg" alt="Logo"> <!-- Replace with your actual logo image path -->
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About Us</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="profile.html">Profile</a>
+        <a href="search.html">Search for Donor</a>
+    </nav>
+    <div class="form-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <div class="forgot-password">
+            <a href="#" onclick="generateOTP()">Forgot Password?</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const profileData = JSON.parse(localStorage.getItem('profileData'));
+
+            if (profileData.email === email && profileData.password === password) {
+                alert('Login successful!');
+                window.location.href = 'profile.html';
+            } else {
+                alert('Invalid email or password.');
+            }
+        });
+
+        function generateOTP() {
+            const otp = Math.floor(100000 + Math.random() * 900000);
+            localStorage.setItem('otp', otp);
+            alert('Your OTP is: ' + otp);
+            const otpInput = prompt('Enter OTP:');
+            if (otpInput == localStorage.getItem('otp')) {
+                alert('OTP verified. Login successful!');
+                window.location.href = 'search.html';
+            } else {
+                alert('Invalid OTP.');
+            }
+        }
+    </script>
+</body>
+</html>

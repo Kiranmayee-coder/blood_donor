@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background: maroon;
+            color: white;
+            text-align: center;
+            padding: 5px 0;
+        }
+        header h1 {
+            margin: 0;
+            padding: 5px 0;
+            font-size: 1.5em;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 0;
+            background: white;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+        nav img {
+            height: 40px;
+            position: absolute;
+            left: 10px;
+        }
+        nav a {
+            color: black;
+            padding: 5px 10px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 0.9em;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .form-container {
+            background-image: url('https://cdn5.vectorstock.com/i/1000x1000/12/79/donate-blood-bag-on-blue-background-vector-6651279.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: 20px auto;
+        }
+        .form-container h2 {
+            text-align: center;
+            color: white;
+        }
+        .form-container label {
+            color: white;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .form-container .inline-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-container .inline-group select,
+        .form-container .inline-group input {
+            width: 48%;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: maroon;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blood Bank and Donor Management System</h1>
+    </header>
+    <nav>
+        <img src="https://thumbs.dreamstime.com/b/blood-donation-logo-drop-vector-illustration-149924795.jpg" alt="Logo"> <!-- Replace with your actual logo image path -->
+        <a href="home.html">Home</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About Us</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="profile.html">Profile</a>
+	<a href="view.php">View</a>
+        <a href="search.html">Search for Donor</a>
+    </nav>
+    <div class="form-container">
+        <h2>Register</h2>
+       	   <form id="registerForm" action="register.php" method="post">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="bloodGroup">Blood Group</label>
+            <select id="bloodGroup" name="bloodGroup" required>
+                <option value="O+">O+</option>
+                <option value="A+">A+</option>
+                <option value="O-">O-</option>
+                <option value="B+">B+</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="A-">A-</option>
+                <option value="B-">B-</option>
+            </select>
+
+            <label for="aadhaar">Aadhaar Number</label>
+            <input type="text" id="aadhaar" name="aadhaar" required>
+
+            <div class="inline-group">
+                <label for="country">Country</label>
+                <label for="state">State</label>
+            </div>
+            <div class="inline-group">
+                <select id="country" name="country" required>
+                    <option value="India">India</option>
+                    <option value="USA">USA</option>
+                    <option value="UK">UK</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Malaysia">Malaysia</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Kenya">Kenya</option>
+                </select>
+                <input type="text" id="state" name="state" required>
+            </div>
+
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="mobile">Mobile Number</label>
+            <input type="text" id="mobile" name="mobile" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const password = document.getElementById('password').value;
+            const mobile = document.getElementById('mobile').value;
+            const email = document.getElementById('email').value;
+
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long.');
+                return;
+            }
+
+            if (!/^\d{10}$/.test(mobile)) {
+                alert('Mobile number must be 10 digits.');
+                return;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            const formData = new FormData(event.target);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            localStorage.setItem('profileData', JSON.stringify(data));
+            window.location.href = 'profile.html';
+        });
+    </script>
+</body>
+</html>

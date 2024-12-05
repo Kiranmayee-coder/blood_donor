@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank and Donor Management System</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background: maroon;
+            color: white;
+            text-align: center;
+            padding: 5px 0; /* Decreased padding for smaller header */
+        }
+        header h1 {
+            margin: 0;
+            padding: 5px 0; /* Decreased padding for smaller header */
+            font-size: 1.5em; /* Decreased font size */
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center the links */
+            padding: 5px 0; /* Decreased padding for smaller nav */
+            background: white;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+        nav img {
+            height: 40px; /* Adjusted logo size */
+            position: absolute;
+            left: 10px; /* Position logo to the leftmost side */
+            background: white; /* Ensure the background of the logo is white */
+        }
+        nav a {
+            color: black;
+            padding: 5px 10px; /* Decreased padding for smaller links */
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            margin-left: 5px; /* Decreased margin between links */
+            font-size: 0.9em; /* Decreased font size */
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .background-container {
+            position: relative;
+            width: 100%;
+            height: calc(100% - 70px); /* Adjust height to account for header and nav */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .quote {
+            position: absolute;
+            top: 70%; /* Moved text lower */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.2em; /* Decreased font size */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blood Bank and Donor Management System</h1>
+    </header>
+    <nav>
+        <img src="https://thumbs.dreamstime.com/b/blood-donation-logo-drop-vector-illustration-149924795.jpg" alt="Logo"> <!-- Replace with your actual logo image path -->
+        <a href="home.html">Home</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About Us</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="profile.html">Profile</a>
+	<a href="search.html">Search for Donor</a>
+    </nav>
+    <div class="background-container" style="background-image: url('https://www.practostatic.com/fit/2d01e08a4bd3d8beeadbaf6113703b2773d151fc');"> <!-- Replace with your actual background image path -->
+        <div class="quote">
+            <p>Just Donate Blood</p>
+            <p>Donating blood is simple, painless, and noble.</p>
+        </div>
+    </div>
+</body>
+</html>
